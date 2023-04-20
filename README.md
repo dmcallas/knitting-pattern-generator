@@ -2,6 +2,8 @@
 
 Currently generator will generate a pattern for knitting a sphere.
 
+[Visit the application](https://dmcallas.github.io/knitting-pattern-generator/)
+
 ## Install/run:
 
 - Clone the repository

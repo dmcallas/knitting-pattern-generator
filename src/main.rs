@@ -216,6 +216,10 @@ pub fn app() -> Html {
         <main>
             <h1>{ "Sphere Pattern Generator" }</h1>
             <p><SphereComponent /></p>
+            <footer>
+                <br/><br/>
+                <a href={"https://github.com/dmcallas/knitting-pattern-generator/"}>{ "View the code on Github" }</a>
+            </footer>
         </main>
     }
 }
