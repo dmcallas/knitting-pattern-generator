@@ -643,7 +643,7 @@ function initSync(module) {
 
 async function init(input) {
     if (typeof input === 'undefined') {
-        input = new URL('sphere-knit-300759c5e5fafe3b_bg.wasm', import.meta.url);
+        input = new URL('sphere-knit-fdd5133299be4f2d_bg.wasm', import.meta.url);
     }
     const imports = getImports();
 
