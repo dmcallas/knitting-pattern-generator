@@ -167,7 +167,7 @@ fn generate_instructions_for_sphere(
             }
             Some(inc) => {
                 instructions.push(generate_row_instruction(inc, count, &mut rng, i));
-                instructions.push(html! {<div>{format!("Row {}: k{}", 2*i, count)}</div>});
+                instructions.push(html! {<div>{format!("Row {}: k{}", 2*i+2, count)}</div>});
             }
         }
     }
@@ -188,9 +188,11 @@ fn generate_row_instruction(inc: i32, count: i32, rng: &mut StdRng, i: usize) ->
         // so pick a random amount to put at the beginning:
         let before_st = rng.gen_range(0..(rem + block_sizes));
         // Figure out how many stitches that leaves at the end:
-        let after_st = rem + block_sizes - before_st - 1;
+        let after_st = rem + 2*block_sizes - before_st;
         let instruction = format!("Row {}: k{} st, inc, * k{}, inc, rep from * {} times, k{} (total of {} inc, {} st total)",
-                                              2*i+1,before_st,     block_sizes,        blocks-1,  after_st,    inc,    count);
+                                              2*i+1,before_st,     block_sizes,        blocks-2,  after_st,    inc,    count);
+        info!("before_st: {}, inc: {}, count: {}", count-inc, inc, count);
+        info!("total st: {}, total incs: {}", before_st+block_sizes*(blocks-2)+after_st, 1+(blocks-2));
         info!(
             "{} --- block_sizes={}, rem={}, before_st={}, blocks={}, count={}, sum={}",
             instruction,
@@ -201,6 +203,7 @@ fn generate_row_instruction(inc: i32, count: i32, rng: &mut StdRng, i: usize) ->
             count,
             before_st + 1 + (block_sizes + 1) * (blocks - 1) + after_st
         );
+        info!("End");
         return html! {<div>{instruction}</div>};
     } else if inc == 1 {
         // Row without significant increases
